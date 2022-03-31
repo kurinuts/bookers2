@@ -1,13 +1,22 @@
 <table>
  
   <div>
-    <%#= book_name.get_book %>
+    
   <thead>
+    <tr>
+    <th>user_image</th>
     <th>Title</th>
-    <%= @post_book.book_name %>
     <th>Opinion</th>
-    <%= @post_book.caption %>
     <th colspan="2"></th>
+    </tr>
+    
+    <tr>
+    <td></td>
+    <td><%= @post_book.book_name %></td>
+    <td><%= @post_book.caption %></td>
+    <td><%= link_to "Edit" %></td>
+    <td><%= link_to "Destroy", book_path(@post_book), method: :delete %></td>
+    </tr>
   </thead>
   </div>
 </table>
