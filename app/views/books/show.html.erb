@@ -1,7 +1,7 @@
 <table>
- 
+
   <div>
-    
+
   <thead>
     <tr>
     <th>user_image</th>
@@ -9,23 +9,23 @@
     <th>Opinion</th>
     <th colspan="2"></th>
     </tr>
-    
+
     <tr>
     <td></td>
     <td><%= @post_book.book_name %></td>
     <td><%= @post_book.caption %></td>
-    <td><%= link_to "Edit" %></td>
+    <td><%= link_to "Edit", edit_book_path(@post_book) %></td>
     <td><%= link_to "Destroy", book_path(@post_book), method: :delete %></td>
     </tr>
   </thead>
   </div>
 </table>
   <tbody>
-    
+
 
 <h1>New book</h1>
   <%= form_with model: @book do |f| %>
-   
+
     <h4>Title</h4>
       <%= f.text_field :book_name %>
     <h4>Opinion</h4>

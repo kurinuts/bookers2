@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+    has_one_attached :book
+    belongs_to :user
   
   def getbook
     if book.attached?

@@ -1,3 +1,4 @@
+<h1>Books</h1>
 <table>
   <thead>
     <th>Title</th>
@@ -14,11 +15,10 @@
 <h1>User info</h1>
 <table>
   <tr><th>image</th><td> </td></tr>
-  <tr><th>name</th><td>nuts</td></tr>
-  <tr><th>introduction</th><td>hello!!</td></tr>
-  
+  <tr><th>name</th><td><%= @user.name %></td></tr>
+  <tr><th>introduction</th><td><%= @user.email %></td></tr>
 </table>
-
+<%= link_to "Edit", edit_user_path(@user), method: :edit %>
 
 <h1>New book</h1>
   <%= form_with model: @book do |f| %>
