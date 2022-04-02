@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   
+  def new
+  end
+
   def show
     @user = User.find(params[:id])
     @books = @user.books
@@ -16,6 +19,9 @@ class UsersController < ApplicationController
     redirect_to user_path(resource)
   end
   
+  def destroy
+  end
+
   private
 
   def user_params
