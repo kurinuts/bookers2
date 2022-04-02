@@ -1,10 +1,10 @@
-<h1>Books</h1>
+
 
 <div class="container">  <!-- この行を追加 -->
   <div class="row">
     <div class="col-lg-4">
       <h1>User info</h1>
-<table>
+<table class="table table-striped">
   <tr><th>image</th><td> </td></tr>
   <tr><th>name</th><td><%= @user.name %></td></tr>
   <tr><th>introduction</th><td><%= @user.email %></td></tr>
@@ -22,7 +22,10 @@
   <% end %>
     </div>
     <div class="col-lg-8">
-<table>
+      
+      
+      <h1>Books</h1>
+<table class="table table-striped">
   <thead>
     <th>Title</th>
     <th>Opinion</th>

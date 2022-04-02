@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-lg-4">
       <h1>User info</h1>
-      <table>
+      <table class="table table-striped">
   <tr><th>image</th><td> </td></tr>
   <tr><th>name</th><td><%= @user.name %></td></tr>
   <tr><th>introduction</th><td><%= @user.email %></td></tr>
@@ -16,30 +16,41 @@
 
 <h1>New book</h1>
   <%= form_with model: @book do |f| %>
-   
+
     <h4>Title</h4>
       <%= f.text_field :book_name %>
     <h4>Opinion</h4>
-      <%= f.text_area :caption %>
-    <%= f.submit 'Create Book' %>
+      <%= f.text_area :caption %><br>
+    <%= f.submit 'Create' %>
   <% end %>
     </div>
     <div class="col-lg-8">
+
     <div>
+      <h1>Books</h1>
     <table class="table table-striped">
-        <tr>
+      <thead>
           <th>user</th>
           <th>Title</th>
           <th>Opinion</th>
-        </tr>
+      </thead>
+
+      <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
         <% @books.each do |book| %>
         <tr>
-        <td></td>
+        <td><%= link_to "user" %></td>
         <td><%= book.book_name %></td>
         <td><%= book.caption %></td>
         </tr>
         <% end %>
-    
+
     </table>
     </div>
     </div>
@@ -48,7 +59,7 @@
   </main>
   <footer></footer>
   </body>
-  
+
 </html>
 
 

@@ -10,6 +10,15 @@
 </table>
 
   <h1>New book</h1>
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
   <%= form_with model: @book do |f| %>
 
     <h4>Title</h4>
@@ -20,9 +29,9 @@
   <% end %>
     </div>
     <div class="col-lg-8">
-<table>
-  <div>
-
+    <div>
+      
+<table class="table table-striped">
   <thead>
     <tr>
     <th>user_image</th>

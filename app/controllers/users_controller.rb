@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @user.update
   end
   
   def update
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_id).permit(:email, :encrypted_password)
+    params.require(:user_id).permit(:email, :encrypted_password, :name)
   end
 end
