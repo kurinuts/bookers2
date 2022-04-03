@@ -2,8 +2,8 @@ class Book < ApplicationRecord
     has_one_attached :book
     belongs_to :user
     
-    validates :book_name, presence: true
-    validates :caption, presence: true
+    validates :title, presence: true
+    validates :body, presence: true
   
   def getbook
     if book.attached?

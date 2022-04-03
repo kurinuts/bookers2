@@ -22,9 +22,9 @@
   <%= form_with model: @book do |f| %>
 
     <h4>Title</h4>
-      <%= f.text_field :book_name %>
+      <%= f.text_field :title %>
     <h4>Opinion</h4>
-      <%= f.text_area :caption %>
+      <%= f.text_area :body %>
     <%= f.submit 'Create Book' %>
   <% end %>
     </div>
@@ -42,8 +42,8 @@
 
     <tr>
     <td></td>
-    <td><%= @post_book.book_name %></td>
-    <td><%= @post_book.caption %></td>
+    <td><%= @post_book.title %></td>
+    <td><%= @post_book.body %></td>
     <td><%= link_to "Edit", edit_book_path(@post_book) %></td>
     <td><% if @post_book.user == current_user %><%= link_to "Destroy", book_path(@post_book), method: :delete %><% end %></td>
     </tr>

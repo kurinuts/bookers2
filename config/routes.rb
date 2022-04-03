@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
+  resources :post_images, only: [:new, :create, :update]
 
   # get 'books/new'
   # get 'books/show'

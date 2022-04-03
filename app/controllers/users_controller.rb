@@ -11,13 +11,12 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-    @user.update
   end
   
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_path(resource)
+    redirect_to user_path(@user)
   end
   
   def destroy
@@ -26,6 +25,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_id).permit(:email, :encrypted_password, :name)
+    params.require(:user).permit(:name, :introduction, :profile_image)
+    # permit⇒sサイト内で編集するところを記載
   end
 end

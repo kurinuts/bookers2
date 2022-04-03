@@ -2,8 +2,12 @@
   <%= form_with model: @book do |f| %>
 
     <h4>Title</h4>
-      <%= f.text_field :book_name %>
+      <%= f.text_field :title %>
     <h4>Opinion</h4>
-      <%= f.text_area :caption %>
-    <%= f.submit 'Create Book' %>
+      <%= f.text_area :body %>
+    <%= f.submit 'Update Book' %>
   <% end %>
+  <%= link_to "Show", book_path, class: 'bg-green' %>
+  |
+  <%= link_to "Back", books_path, class: 'bg-green' %>
+  
