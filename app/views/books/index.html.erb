@@ -8,9 +8,9 @@
     <div class="col-lg-4">
       <h1>User info</h1>
       <table class="table table-striped">
-  <tr><th>image</th><td> </td></tr>
+  <tr><th><%= image_tag @user.get_profile_image(50,50) %></th><td> </td></tr>
   <tr><th>name</th><td><%= @user.name %></td></tr>
-  <tr><th>introduction</th><td><%= @user.email %></td></tr>
+  <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
 </table>
 <%= link_to "Edit", edit_user_path(@user) %>
 
@@ -30,26 +30,25 @@
       <h1>Books</h1>
     <table class="table table-striped">
       <thead>
-          <th>user</th>
+          <th> </th>
           <th>Title</th>
           <th>Opinion</th>
       </thead>
 
-      <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
+  
+  <% @books.each do |book| %>
+  <tr>
+    <td>
+      <%= link_to user_path(book.user) do %>
+      <%= image_tag book.user.get_profile_image(50,50) %>
+      <% end %></td>
+    <td>
+      <%= link_to book_path(book.user) do %>
+      <%= book.title %></td>
+      <% end %>
+    <td><%= book.body %></td>
+  </tr>
   <% end %>
-        <% @books.each do |book| %>
-        <tr>
-        <td><%= link_to "user", user_path(@books) %></td>
-        <td><%= book.title %></td>
-        <td><%= book.body %></td>
-        </tr>
-        <% end %>
 
     </table>
     </div>

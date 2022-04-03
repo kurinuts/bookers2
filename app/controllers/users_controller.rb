@@ -13,6 +13,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def index
+    @user = current_user
+    @book = Book.new
+    @users = User.
+  end
+  
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
@@ -27,5 +33,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
     # permit⇒sサイト内で編集するところを記載
+  end
   end
 end

@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
 
   def new
-    @post_book = Book.new
-    @book.user_id = current_user.id
+    @book = Book.new
+    @user = current_user
+    @users = user.all
     if @book.save
     redirect_to book_path(@book)
     else
@@ -13,6 +14,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    @users = User.all
+    @books = Book.all
+    @user = current_user
     if @book.save
     redirect_to book_path(@book)
     else

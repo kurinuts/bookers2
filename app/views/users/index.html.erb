@@ -1,3 +1,5 @@
+books index
+
 
 
 <div class="container">  <!-- この行を追加 -->
@@ -8,11 +10,21 @@
   <tr><th><%= image_tag @user.get_profile_image(50,50) %></th><td> </td></tr>
   <tr><th>name</th><td><%= @user.name %></td></tr>
   <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
+
 </table>
 <%= link_to "Edit", edit_user_path(@user) %>
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
 
 <h1>New book</h1>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
   <%= form_with model: @book do |f| %>
 
     <h4>Title</h4>
@@ -28,19 +40,20 @@
       <h1>Books</h1>
 <table class="table table-striped">
   <thead>
+    <th>user</th>
+    <th>name</th>
     <th> </th>
-    <th>Title</th>
-    <th>Opinion</th>
     <th colspan="2"></th>
   </thead>
-  <% @books.each do |book| %>
+
+  <% @users.each do |user| %>
   <tr>
     <td>
-      <%= link_to user_path(book.user) do %>
-      <%= image_tag book.user.get_profile_image(50,50) %>
+      <%= link_to user_path(user) do %>
+      <%= image_tag user.get_profile_image(50,50) %>
     <% end %></td>
-    <td><%= book.title %></td>
-    <td><%= book.body %></td>
+    <td><%= user.name %></td>
+    <td><%= link_to "show", user_path(user) %></td>
   </tr>
   <% end %>
 </table>
