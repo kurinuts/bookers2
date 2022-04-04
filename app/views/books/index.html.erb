@@ -12,7 +12,14 @@
   <tr><th>name</th><td><%= @user.name %></td></tr>
   <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
 </table>
-<%= link_to "Edit", edit_user_path(@user) %>
+
+<% if @user == current_user %>
+<a><%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+<i class="fas fa-user-cog fa-lg"></i>
+<% end %></a>
+<% end %>
+
+
 
 <h1>New book</h1>
   <%= form_with model: @book do |f| %>
@@ -21,7 +28,7 @@
       <%= f.text_field :title %>
     <h4>Opinion</h4>
       <%= f.text_area :body %><br>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Create', class: "btn btn-success" %>
   <% end %>
     </div>
     <div class="col-lg-8">
@@ -35,7 +42,7 @@
           <th>Opinion</th>
       </thead>
 
-  
+
   <% @books.each do |book| %>
   <tr>
     <td>
@@ -43,7 +50,7 @@
       <%= image_tag book.user.get_profile_image(50,50) %>
       <% end %></td>
     <td>
-      <%= link_to book_path(book.user) do %>
+      <%= link_to book_path(book) do %>
       <%= book.title %></td>
       <% end %>
     <td><%= book.body %></td>

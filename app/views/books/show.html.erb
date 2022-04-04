@@ -1,5 +1,18 @@
+<% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+     <style>
+       p {
+         color: green;
+         padding: 30px;
+       }
+     </style>
+   <% end %>
+   
+
 <div class="container">
-  <div class="row"> 
+  <div class="row">
 <div class="col-lg-4">
   <h1>User info</h1>
 <table class="table table-striped">
@@ -17,20 +30,24 @@
     <% end %>
   </ul>
   <% end %>
+   
+   
 
   <%= form_with model: @book do |f| %>
 
     <h4>Title</h4>
       <%= f.text_field :title %>
     <h4>Opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
+      <%= f.text_area :body %><br>
+    <%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
     </div>
     <div class="col-lg-8">
     <div>
-      
-<table class="table table-striped">
+
+
+  <h1>Book detail</h1>
+  <table class="table table-striped">
   <thead>
     <tr>
     <th>user_image</th>
@@ -41,21 +58,24 @@
 
     <tr>
     <td>
+      <a>
       <%= link_to user_path(@user) do %>
       <%= image_tag @user.get_profile_image(50,50) %>
-    <% end %></td>
+    <% end %><br>
+    <%= link_to user_path(@user) do %><%= @user.name %><% end %>
+    </a></td>
     <%= form_with model: @book do |f| %>
     <td><%= @post_book.title %></td>
     <td><%= @post_book.body %></td>
-    <td><%= link_to "Edit", edit_book_path(@post_book) %></td>
-    <td><% if @post_book.user == current_user %><%= link_to "Destroy", book_path(@post_book), method: :delete %><% end %></td>
+    <td><% if @post_book.user == current_user %><%= link_to "Edit", edit_book_path(@post_book), class: "btn btn-success btn-block" %><% end %></td>
+    <td><% if @post_book.user == current_user %><%= link_to "Destroy", book_path(@post_book), method: :delete, class: "btn btn-danger btn-block" %><% end %></td>
     <% end %>
     </tr>
-  </thead>
-  </div>
-</table>
-</div>
-</div>
-</div>
+    </thead>
+    </div>
+    </table>
+    </div>
+    </div>
+    </div>
   <tbody>
 

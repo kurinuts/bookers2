@@ -1,6 +1,14 @@
-books index
-
-
+<% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+     <style>
+       p {
+         color: green;
+         padding: 30px;
+       }
+     </style>
+   <% end %>
 
 <div class="container">  <!-- この行を追加 -->
   <div class="row">
@@ -10,9 +18,11 @@ books index
   <tr><th><%= image_tag @user.get_profile_image(50,50) %></th><td> </td></tr>
   <tr><th>name</th><td><%= @user.name %></td></tr>
   <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
-
 </table>
-<%= link_to "Edit", edit_user_path(@user) %>
+<a><%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+       <i class="fas fa-user-cog fa-lg"></i>
+      <% end %></a>
+
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
 
 <h1>New book</h1>
@@ -30,8 +40,8 @@ books index
     <h4>Title</h4>
       <%= f.text_field :title %>
     <h4>Opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
+      <%= f.text_area :body %><br>
+    <%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
     </div>
     <div class="col-lg-8">
@@ -49,11 +59,9 @@ books index
   <% @users.each do |user| %>
   <tr>
     <td>
-      <%= link_to user_path(user) do %>
-      <%= image_tag user.get_profile_image(50,50) %>
-    <% end %></td>
+    <%= image_tag user.get_profile_image(50,50) %></td>
     <td><%= user.name %></td>
-    <td><%= link_to "show", user_path(user) %></td>
+    <td><%= link_to "show", user_path(@user) %></td>
   </tr>
   <% end %>
 </table>
