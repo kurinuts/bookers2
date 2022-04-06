@@ -2,48 +2,43 @@
   <head>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
-  
-  <% if flash[:notice] %>
-     <p id="notice">
-       <%= flash[:notice] %>
-     </p>
-     <style>
-       p {
-         color: green;
-         padding: 30px;
-       }
-     </style>
-   <% end %>
-   
-   
 
 <div class="container">  <!-- この行を追加 -->
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-3">
       <h1>User info</h1>
 <table class="table table-striped">
-  <tr><th><%= image_tag @postuser.get_profile_image(50,50) %></th><td> </td></tr>
-  <tr><th>name</th><td><%= @postuser.name %></td></tr>
-  <tr><th>introduction</th><td><%= @postuser.introduction %></td></tr>
+  <tr><th><%= image_tag @user.get_profile_image(50,50) %></th><td> </td></tr>
+  <tr><th>name</th><td><%= @user.name %></td></tr>
+  <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
 </table>
 
-<a><%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
-       <i class="fas fa-user-cog fa-lg"></i>
-      <% end %></a>
 
+<% if @user == current_user %>
+<%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+    <i class="fas fa-user-cog fa-lg"></i>
+<% end %>
 
+<% else %>
+  <%= link_to user_path(current_user), class: "btn btn-secondary btn-block" do %>
+    <i class="fas fa-user-cog fa-lg"></i>
+  <% end %>
 
-<style>
-  
-　a {
-    text-align: center;
-    background-color: gray;
-  }
-</style>
+<% end %>
 
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
 
 <h1>New book</h1>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
   <%= form_with model: @book do |f| %>
 
     <h4>Title</h4>
@@ -53,11 +48,11 @@
     <%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
   </div>
-    
-    
-    
-    
-    <div class="col-lg-8">
+
+
+
+
+    <div class="col-md-8 offset-md-1">
 
 
       <h1>Books</h1>
@@ -66,16 +61,16 @@
     <th> </th>
     <th>Title</th>
     <th>Opinion</th>
-    <th colspan="2"></th>
+    <!--<th colspan="2"></th>-->
   </thead>
   <% @books.each do |book| %>
   <tr>
     <td>
-      <%= link_to user_path(book.user) do %>
+      <%= link_to user_path(@user) do %>
       <%= image_tag book.user.get_profile_image(50,50) %>
     <% end %></td>
     <td>
-      <%= link_to book_path(book.user) do %>
+      <%= link_to book_path(book) do %>
       <%= book.title %>
       <% end %></td>
 
@@ -83,7 +78,6 @@
   </tr>
   <% end %>
 </table>
-  <tbody>
 
   </div>
   </div>

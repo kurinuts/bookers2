@@ -1,6 +1,16 @@
 <h1>Editing Book</h1>
-  <%= form_with model: @book do |f| %>
 
+<% if @post_book.errors.any? %>
+  <%= @post_book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @post_book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+  <%= form_with model: @post_book do |f| %>
     <h4>Title</h4>
       <%= f.text_field :title %>
     <h4>Opinion</h4>
@@ -10,4 +20,3 @@
   <%= link_to "Show", book_path, class: 'bg-green' %>
   |
   <%= link_to "Back", books_path, class: 'bg-green' %>
-  

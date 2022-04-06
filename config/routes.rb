@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "homes#top"
+  root to: "home#top"
 
   devise_for :users, skip: [:sessions]
   as :user do
@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     post 'users/sign_in', to: "devise/sessions#create", as: :user_session
   end
 
-  get 'homes/top'
-  get 'homes/about' => 'homes#about', as: "about"
+  get 'home/top'
+  get 'home/about' => 'home#about', as: "about"
 
   resources :books
   resources :users

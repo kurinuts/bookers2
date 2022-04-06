@@ -1,30 +1,24 @@
-<% if flash[:notice] %>
-     <p id="notice">
-       <%= flash[:notice] %>
-     </p>
-     <style>
-       p {
-         color: green;
-         padding: 30px;
-       }
-     </style>
-   <% end %>
+
+
 
 <div class="container">  <!-- この行を追加 -->
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-3">
       <h1>User info</h1>
 <table class="table table-striped">
+  
   <tr><th><%= image_tag @user.get_profile_image(50,50) %></th><td> </td></tr>
   <tr><th>name</th><td><%= @user.name %></td></tr>
   <tr><th>introduction</th><td><%= @user.introduction %></td></tr>
 </table>
-<a><%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
+<div class="row">
+<%= link_to edit_user_path(@user), class: "btn btn-secondary btn-block" do %>
        <i class="fas fa-user-cog fa-lg"></i>
-      <% end %></a>
+      <% end %>
+</div>
+      
 
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
-
 <h1>New book</h1>
 <% if @book.errors.any? %>
   <%= @book.errors.count %>errors prohibited this obj from being saved:
@@ -44,16 +38,18 @@
     <%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
     </div>
-    <div class="col-lg-8">
+    
+    
+    
+    <div class="col-md-8 offset-md-1">
 
-
-      <h1>Books</h1>
+      <h1>Users</h1>
 <table class="table table-striped">
   <thead>
-    <th>user</th>
+    <th>image</th>
     <th>name</th>
     <th> </th>
-    <th colspan="2"></th>
+    <!--<th colspan="1"></th>-->
   </thead>
 
   <% @users.each do |user| %>
@@ -61,12 +57,11 @@
     <td>
     <%= image_tag user.get_profile_image(50,50) %></td>
     <td><%= user.name %></td>
-    <td><%= link_to "show", user_path(@user) %></td>
+    <td><%= link_to "Show", user_path(user) %></td>
   </tr>
   <% end %>
 </table>
-  <tbody>
-
+  </div>
   </div>
   </div>
   </div>

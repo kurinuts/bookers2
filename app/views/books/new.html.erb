@@ -1,4 +1,18 @@
 <html>
+  
+  <% if flash[:notice] %>
+    <p id="notice"><%= flash[:notice] %></p>
+    
+    <style>
+    p {
+      color: green;
+      padding: 30px;
+      
+    }
+    </style>
+  <% end %>
+   
+  
   <% if @book.errors.any? %>
   <%= @book.errors.count %>errors prohibited this obj from being saved:
   <ul>

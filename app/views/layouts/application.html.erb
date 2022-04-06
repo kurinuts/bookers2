@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <title>Bookers2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
@@ -27,7 +29,7 @@
 
           <% if user_signed_in? %>
             <li class="nav-item">
-             <%= link_to root_path, class: 'nav-link text-light' do %>
+             <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i>Home
              <% end %>
              </li>
@@ -80,20 +82,38 @@
 
         </div>
       </nav>
+
     </header>
+
+    <% if flash[:notice] %>
+    <div class ="success">
+    <p id="notice"><%= flash[:notice] %></p>
+    </div>
+
+    <style>
+    .success {
+      color: green;
+      padding: 30px;
+
+    }
+    </style>
+   <% end %>
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-white text-dark pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
+    <footer>
 
-
-            <p>CopyRight Infratop.inc</p>
-          </div>
-        </div>
+      <div class="container mt-5">
+      <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+      </div>
       </div>
     </footer>
   </body>
+
+
+
+
 </html>

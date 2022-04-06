@@ -1,36 +1,43 @@
 class UsersController < ApplicationController
-  
+before_action :authenticate_user!
+
   def new
-    
+
   end
 
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-    @user = current_user
-    @post_book = Book.find(params[:id])
-    @postuser = @post_book.user
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def index
     @user = current_user
     @book = Book.new
     @users = User.all
   end
-  
+
   def update
-    flash[:notice] = "successfully" 
     @user = User.find(params[:id])
-    @user.update(user_params)
+    if @user.update(user_params)
+    flash[:notice] = "successfully user update"
     redirect_to user_path(@user)
+    else
+    render :edit
+    end
   end
-  
+
   def destroy
+    # @user = User.find(params[:id])
+    # if @user.destroy
+    # flash[:notice] = "successfully destroy"
+    # else
+    #   render :users_path
+    # end
   end
 
   private
