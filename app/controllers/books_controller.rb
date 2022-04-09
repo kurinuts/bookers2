@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+  # before_action :correct_user, only: [:edit, :update]
 
   def new
     @book = Book.new
@@ -43,6 +44,12 @@ class BooksController < ApplicationController
   def edit
     @post_book = Book.find(params[:id])
     @book = Book.new
+    # @user = current_user
+    # if @user
+    # redirect_to edit_book_path(@post_book.id)
+    # else
+    # render :index
+    # end
   end
 
   def update

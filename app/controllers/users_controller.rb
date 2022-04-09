@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :authenticate_user!
+# before_action :correct_user, only: [:edit, :update]
 
   def new
 
@@ -13,6 +14,11 @@ before_action :authenticate_user!
 
   def edit
     @user = User.find(params[:id])
+    # if @user = current_user
+    # redirect_to edit_user_path(@user)
+    # else
+    # render :show
+    # end
   end
 
   def index
